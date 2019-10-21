@@ -826,6 +826,10 @@ mtsNDISerial::Tool * mtsNDISerial::AddTool(const std::string & name,
         } else {
             tool->Position.SetReferenceFrame("Camera");
         }
+        
+        // rmserror/indicator value (Aurora)
+        StateTable.AddData(tool->ErrorRMS, name + "RMSError");
+        tool->Interface->AddCommandReadState(StateTable, tool->ErrorRMS, "GetErrorRMS");
     }
 
     // update list of existing tools
